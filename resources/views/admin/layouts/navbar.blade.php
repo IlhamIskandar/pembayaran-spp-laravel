@@ -47,19 +47,19 @@
       <div class="list-group list-group-flush mx-3 mt-4">
         <a
           href="{{route('admin.index')}}"
-          class="list-group-item list-group-item-action py-2 ripple"
+          class="list-group-item list-group-item-action py-2 ripple {{ request()->is('admin') ? 'active' : '' }}"
           aria-current="true"
         >
           <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Main dashboard</span>
         </a>
-        <a href="{{route('admin.spp.index')}}" class="list-group-item list-group-item-action py-2 ripple @if(route('admin.spp.index'))@endif">
+        <a href="{{route('admin.spp.index')}}" class="list-group-item list-group-item-action py-2 ripple {{ request()->routeIs('admin.spp.*') ? 'active' : '' }}">
           <i class="fas fa-chart-area fa-fw me-3"></i><span>SPP</span>
         </a>
-        <a href="#" class="list-group-item list-group-item-action py-2 ripple"
-          ><i class="fas fa-lock fa-fw me-3"></i><span>Password</span></a
+        <a href="{{route('admin.class.index')}}" class="list-group-item list-group-item-action py-2 ripple {{ request()->routeIs('admin.class.*') ? 'active' : '' }}"
+          ><i class="fas fa-lock fa-fw me-3"></i><span>Kelas</span></a
         >
-        <a href="#" class="list-group-item list-group-item-action py-2 ripple"
-          ><i class="fas fa-chart-line fa-fw me-3"></i><span>Analytics</span></a
+        <a href="{{route('admin.student.index')}}" class="list-group-item list-group-item-action py-2 ripple {{ request()->routeIs('admin.student.*') ? 'active' : '' }}"
+          ><i class="fas fa-chart-line fa-fw me-3"></i><span>Siswa</span></a
         >
         <a href="#" class="list-group-item list-group-item-action py-2 ripple">
           <i class="fas fa-chart-pie fa-fw me-3"></i><span>SEO</span>

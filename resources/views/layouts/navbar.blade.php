@@ -44,12 +44,12 @@
         <li class="nav-item">
           <a class="nav-link" href="{{route('home')}}">Home</a>
         </li>
-        {{-- <li class="nav-item">
-          <a class="nav-link" href="#">Team</a>
+        <li class="nav-item">
+          <a class="nav-link" href="{{route('spp.entry')}}">Staff</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Projects</a>
-        </li> --}}
+          <a class="nav-link" href="{{route('admin.index')}}">Admin</a>
+        </li>
       </ul>
       <!-- Left links -->
     </div>

@@ -3,14 +3,11 @@
 <div class="container">
 	<h4>SPP</h4>
 	<div class="card">
-		@if(session('success'))
-		<div class="alert alert-success">
-		{{ session('success')}}
-		</div>
-		@endif
+		
 		<div class="card-body">
-			<form action="{{route('admin.spp.store')}}" method="post">
+			<form action="{{route('admin.spp.update', $data->id_spp)}}" method="post">
 				@csrf
+				@method('PUT')
 				<div>
 					<label for="year">Tahun</label>
 					<input class="form-control mb-4" type="text" name="year" id="year" placeholder="20XX" autofocus value="{{$data->year}}">

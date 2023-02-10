@@ -6,6 +6,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\admin\SppController;
+use App\Http\Controllers\admin\ClassController;
+use App\Http\Controllers\admin\StudentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +36,22 @@ Route::prefix('admin')->group(function(){
 		Route::post('/tambah/store', [SppController::class, 'store'])->name('admin.spp.store');
 		Route::delete('/{id_spp}/destroy', [SppController::class, 'destroy'])->name('admin.spp.destroy');
 		Route::get('/{id_spp}/edit', [SppController::class, 'edit'])->name('admin.spp.edit');
-
+		Route::put('/{id_spp}/edit/update', [SppController::class, 'update'])->name('admin.spp.update');
+	});
+	Route::prefix('kelas')->group(function(){
+		Route::get('/', [ClassController::class, 'index'])->name('admin.class.index');
+		Route::get('/tambah', [ClassController::class, 'create'])->name('admin.class.create');
+		Route::post('/tambah/store', [ClassController::class, 'store'])->name('admin.class.store');
+		Route::delete('/{id_class}/destroy', [ClassController::class, 'destroy'])->name('admin.class.destroy');
+		Route::get('/{id_class}/edit', [ClassController::class, 'edit'])->name('admin.class.edit');
+		Route::put('/{id_class}/edit/update', [ClassController::class, 'update'])->name('admin.class.update');
+	});
+	Route::prefix('siswa')->group(function(){
+		Route::get('/', [StudentController::class, 'index'])->name('admin.student.index');
+		Route::get('/tambah', [StudentController::class, 'create'])->name('admin.student.create');
+		Route::post('/tambah/store', [StudentController::class, 'store'])->name('admin.student.store');
+		Route::delete('/{nisn}/destroy', [StudentController::class, 'destroy'])->name('admin.student.destroy');
+		Route::get('/{nisn}/edit', [StudentController::class, 'edit'])->name('admin.student.edit');
+		Route::put('/{nisn}/edit/update', [StudentController::class, 'update'])->name('admin.student.update');
 	});
 });

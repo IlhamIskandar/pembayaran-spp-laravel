@@ -5,8 +5,11 @@
 	<div class="row">
 		<div class="col">
 			<div class="card">
-				{{-- <div class="card-header"> --}}
-				{{-- </div> --}}
+				@if(session('success'))
+				<div class="alert alert-success">
+				{{ session('success')}}
+				</div>
+				@endif
 				<div class="card-body">
 					<a href="{{route('admin.spp.create')}}" class="btn btn-success">tambah</a>
 					<table class="table">
@@ -21,14 +24,13 @@
 							@foreach($spp as $row)
 							<tr>
 								<td>{{$row->year}}</td>
-								<td>{{$row->nominal}}</td>
+								<td>Rp. {{$row->nominal}}</td>
 								<td>
 									<form action="{{route('admin.spp.destroy', $row->id_spp)}}" method="post">
 										@csrf
 										@method('DELETE')
 										<a href="{{route('admin.spp.edit', $row->id_spp)}}" class="btn btn-info btn-sm" data-mdb-toggle="tooltip" title="Ubah Data" data-placement="top">Ubah</a>
-										<button class="btn btn-danger btn-sm" data-mdb-toggle="tooltip" title="Hapus Data" data-placement="top" onclick="return confirm('Hapus Data SPP?');">Hapus
-                                                </button>
+										<button class="btn btn-danger btn-sm" data-mdb-toggle="tooltip" title="Hapus Data" data-placement="top" onclick="return confirm('Hapus Data?');">Hapus</button>
 									</form>
 								</td>
 							</tr>
