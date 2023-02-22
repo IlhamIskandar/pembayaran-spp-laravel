@@ -17,13 +17,16 @@ class CheckRole
     public function handle(Request $request, Closure $next)
     {
         $roles = array_slice(func_get_args(), 2);
-
-        foreach($roles as $role){
-            $userRole = \Auth::user()->role;
-            if($userRole == $role){
-                return $next($request);
+        
+        if (\Auth::user() !=null) {
+            foreach($roles as $role){
+                $userRole = \Auth::user()->role;
+                if($userRole == $role){
+                    return $next($request);
+                }
             }
         }
-        return redirect('/');
+        
+        return redirect('/')->with('error', 'Tidak memiliki akses.');
     }
 }

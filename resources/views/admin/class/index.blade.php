@@ -29,8 +29,8 @@
 									<form action="{{route('admin.class.destroy', $row->id_class)}}" method="post">
 										@csrf
 										@method('DELETE')
-										<a href="{{route('admin.class.edit', $row->id_class)}}" class="btn btn-info btn-sm" data-mdb-toggle="tooltip" title="Ubah Data" data-placement="top">Ubah</a>
-										<button class="btn btn-danger btn-sm" data-mdb-toggle="tooltip" title="Hapus Data" data-placement="top" onclick="return confirm('Hapus Data?');">Hapus
+										<a href="{{route('admin.class.edit', $row->id_class)}}" class="btn btn-warning btn-sm" data-mdb-toggle="tooltip" title="Ubah Data" data-placement="top"><i class="fas fa-pencil fa-fw"></i></a>
+										<button class="btn btn-danger btn-sm" data-mdb-toggle="tooltip" title="Hapus Data" data-placement="top" onclick="return confirm('Hapus Data?');"><i class="fas fa-trash-can fa-fw"></i>
                                                 </button>
 									</form>
 								</td>

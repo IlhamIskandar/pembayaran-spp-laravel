@@ -28,7 +28,7 @@ Route::get('/siswa', [HomeController::class, 'index'])->name('student.index');
 
 Route::get('/entry-spp', [StaffController::class, 'index'])->name('spp.entry');
 
-Route::prefix('admin')->group(function(){
+Route::prefix('admin')->middleware('checkRole:admin')->group(function(){
 	Route::get('/', [AdminController::class, 'index'])->name('admin.index');
 	Route::prefix('spp')->group(function(){
 		Route::get('/', [SppController::class, 'index'])->name('admin.spp.index');
@@ -53,5 +53,13 @@ Route::prefix('admin')->group(function(){
 		Route::delete('/{nisn}/destroy', [StudentController::class, 'destroy'])->name('admin.student.destroy');
 		Route::get('/{nisn}/edit', [StudentController::class, 'edit'])->name('admin.student.edit');
 		Route::put('/{nisn}/edit/update', [StudentController::class, 'update'])->name('admin.student.update');
+		Route::get('/{nisn}', [StudentController::class, 'show'])->name('admin.student.show');
 	});
 });
+
+Route::prefix('staff')->middleware('checkRole:staff')->group(function(){
+
+});
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

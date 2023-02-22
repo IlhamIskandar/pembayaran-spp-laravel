@@ -13,30 +13,49 @@
 	</div>
 	<div class="row">
 		<div class="col-5 mx-auto">
+			@guest
+		    
 			@if(session()->has('loginfailed'))
 			<div class="alert alert-danger">
 				{{message('loginfailed')}}
 			</div>
 			@endif
-			<form class=" border border-light p-5" action="{{route('auth.login')}}" method="POST">
+			<form class="p-5" action="{{route('login')}}" method="POST">
 				@csrf
 			    <h4 class="mb-4 text-center">Masuk</h4>
 
-			    <!-- Username -->
-			    <label class="text-start" for="username" >Nama Pengguna</label>
-			    <input type="text" class="form-control mb-4" placeholder="Nama Pengguna" name="username" required id="username" autofocus value="{{old('username')}}">
-			    {{-- <div class="invalid-feedback">
-			    	@error('username') 
-			    	{{$message}}
-			    	@enderror
-			    </div> --}}
-
-			    <label class="text-start" for="password">Kata Sandi</label>
-			    <input type="password" class="form-control mb-4" placeholder="Kata Sandi" name="password" id="password" required>
-
-			    <button class="btn btn-info btn-block my-4" type="submit">Masuk</button>
-
+			    <div class="row mb-3">
+			    	<div class="col">
+				    <label class="text-start" for="email" >Nama Pengguna</label>
+				    <input type="text" class="form-control @error('email') is-invalid @enderror" placeholder="Nama Pengguna" name="email" required id="email" autofocus value="{{old('email')}}">
+				    @error('email')
+						<span class="invalid-feedback" role="alert">
+							<strong>{{ $message }}</strong>
+						</span>
+		            @enderror	
+			    		
+			    	</div>
+			    </div>
+			    <div class="row mb-3">
+			    	<div class="col">
+				    <label class="text-start" for="password">Kata Sandi</label>
+				    <input type="password" class="form-control mb-4 @error('password') is-invalid @enderror" placeholder="Kata Sandi" name="password" id="password" required>	
+			    	</div>
+			    	@error('password')
+				        <span class="invalid-feedback" role="alert">
+							<strong>{{ $message }}</strong>
+		                </span>
+					@enderror
+			    </div>
+			    <div class="row">
+			    	<div class="col">
+					    <button class="btn btn-info btn-block" type="submit">Masuk</button>
+			    	</div>
+			    </div>
 			</form>
+			@else
+			sudah login
+			@endguest
 		</div>
 	</div>
 	

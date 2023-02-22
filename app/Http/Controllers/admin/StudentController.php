@@ -5,6 +5,8 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Student;
+use App\Models\Classes;
+use App\Models\Spp;
 
 class StudentController extends Controller
 {
@@ -15,7 +17,7 @@ class StudentController extends Controller
      */
     public function index()
     {
-        $data = Student::all();
+        $data = Student::join('classes', 'students.id_class', '=', 'classes.id_class')->get();
         return view('admin.student.index', compact('data'));
     }
 
@@ -26,7 +28,9 @@ class StudentController extends Controller
      */
     public function create()
     {
-        //
+        $classes = Classes::all()->sortBy('class_name');
+        $spps = Spp::all()->sortBy('year');
+        return view('admin.student.create', compact('classes', 'spps'));
     }
 
     /**
@@ -37,7 +41,15 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $credential = $request->validate([
+            'nisn' => 'required|max:10',
+            'nis' => 'required',
+            'studentname' => 'required',
+            'password' => 'required',
+            'classname' => 'required',
+            'phone' => 'required',
+        ]);
+        dd($credential);
     }
 
     /**
@@ -48,7 +60,7 @@ class StudentController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('admin.student.show');
     }
 
     /**
@@ -59,7 +71,7 @@ class StudentController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('admin.student.edit');
     }
 
     /**
