@@ -36,12 +36,10 @@
   height: calc(100vh - 48px);
   padding-top: 0.5rem;
   overflow-x: hidden;
-  overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+  overflow-y: auto;
 }
 </style>
-<!--Main Navigation-->
 <header>
-  <!-- Sidebar -->
   <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
     <div class="position-sticky">
       <div class="list-group list-group-flush mx-3 mt-4">
@@ -61,8 +59,8 @@
         <a href="{{route('admin.student.index')}}" class="list-group-item list-group-item-action py-2 ripple {{ request()->routeIs('admin.student.*') ? 'active' : '' }}"
           ><i class="fas fa-chart-line fa-fw me-3"></i><span>Siswa</span></a
         >
-        <a href="#" class="list-group-item list-group-item-action py-2 ripple">
-          <i class="fas fa-chart-pie fa-fw me-3"></i><span>SEO</span>
+        <a href="{{route('admin.staff.index')}}" class="list-group-item list-group-item-action py-2 ripple {{ request()->routeIs('admin.staff.*') ? 'active' : '' }}">
+          <i class="fas fa-chart-pie fa-fw me-3"></i><span>Staff</span>
         </a>
         <a href="#" class="list-group-item list-group-item-action py-2 ripple"
           ><i class="fas fa-chart-bar fa-fw me-3"></i><span>Orders</span></a
@@ -105,7 +103,7 @@
       </button>
 
       <!-- Brand -->
-      <a class="navbar-brand" href="#">
+      <a class="navbar-brand" href="/">
         <img
           src="/storage/img/smknekat-logo.png"
           height="30"

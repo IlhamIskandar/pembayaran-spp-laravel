@@ -1,12 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Spp;
 
-class SppController extends Controller
+class SppPaymentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +13,7 @@ class SppController extends Controller
      */
     public function index()
     {
-        $spp = Spp::all();
-        return view('admin.spp.index', compact('spp'));
+        return view('staff.entry-spp');
     }
 
     /**
@@ -26,7 +23,7 @@ class SppController extends Controller
      */
     public function create()
     {
-        return view('admin.spp.create');
+        //
     }
 
     /**
@@ -37,19 +34,7 @@ class SppController extends Controller
      */
     public function store(Request $request)
     {
-        $credential = $request->validate([
-            'year' => 'required',
-            'nominal' => 'required|integer'
-        ]);
-
-        // dd($credential);
-
-        $store = Spp::create([
-            'year' => $credential['year'],
-            'nominal' => $credential['nominal']
-        ]);
-
-        return redirect()->route('admin.spp.index')->with('success', 'Berhasil Menambahkan Data');
+        //
     }
 
     /**
@@ -71,9 +56,7 @@ class SppController extends Controller
      */
     public function edit($id)
     {
-        $data = Spp::find($id);
-
-        return view('admin.spp.edit', compact('data'));
+        //
     }
 
     /**
@@ -85,17 +68,7 @@ class SppController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $credential = $request->validate([
-            'year' => 'required',
-            'nominal' => 'required|integer'
-        ]);
-
-        $store = Spp::where('id_spp', $id)->update([
-            'year' => $credential['year'],
-            'nominal' => $credential['nominal']
-        ]);
-
-        return redirect()->route('admin.spp.index')->with('success', 'Berhasil Mengubah Data');
+        //
     }
 
     /**
@@ -106,8 +79,6 @@ class SppController extends Controller
      */
     public function destroy($id)
     {
-        Spp::destroy($id);
-
-        return redirect()->route('admin.spp.index')->with('success', 'Berhasil Menghapus Data');
+        //
     }
 }

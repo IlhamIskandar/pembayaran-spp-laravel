@@ -18,8 +18,7 @@ return new class extends Migration
             $table->primary('nisn');
             $table->biginteger('nis')->unique();
             $table->string('name');
-            $table->string('password');
-            $table->foreignId('id_class')->constrained('classes', 'id_class');
+            $table->foreignId('id_class')->constrained('classes', 'id_class')->default(0);
             $table->text('address');
             $table->string('phone_number', 13);
             $table->foreignId('id_spp')->constrained('spps', 'id_spp');

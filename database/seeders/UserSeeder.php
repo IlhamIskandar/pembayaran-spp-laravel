@@ -24,5 +24,21 @@ class UserSeeder extends Seeder
             'role' => 'staff',
             'email' => 'email@staff.com',
         ]);
+
+        DB::table('users')->insert([
+            'username' => 'admin',
+            'password' => Hash::make('adminlogin'),
+            'name' => 'Akun admin',
+            'role' => 'admin',
+            'email' => 'email@admin.com',
+        ]);
+
+        DB::table('users')->insert([
+            'username' => 'siswa',
+            'password' => Hash::make('siswalogin'),
+            'name' => 'Akun siswa',
+            'role' => 'siswa',
+            'email' => 'email@siswa.com',
+        ]);
     }
 }

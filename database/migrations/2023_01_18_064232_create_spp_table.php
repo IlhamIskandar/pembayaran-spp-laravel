@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('spps', function (Blueprint $table) {
             $table->id('id_spp');
-            $table->integer('year');
+            $table->string('year', 20);
             $table->integer('nominal');
             $table->timestamps();
         });

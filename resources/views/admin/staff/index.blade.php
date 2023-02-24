@@ -11,25 +11,25 @@
 				</div>
 				@endif
 				<div class="card-body">
-					<a href="{{route('admin.spp.create')}}" class="btn btn-success btn-sm"><i class="fas fa-plus fa-fw me-3"></i>tambah</a>
+					<a href="{{route('admin.staff.create')}}" class="btn btn-success btn-sm"><i class="fas fa-plus fa-fw me-3"></i>tambah</a>
 					<table class="table">
 						<thead>
 							<tr>
-								<th>Tahun</th>
-								<th>Nominal</th>	
+								<th>Nama</th>
+								<th>Email</th>	
 								<th>Aksi</th>		
 							</tr>
 						</thead>
 						<tbody>
-							@foreach($spp as $row)
+							@foreach($data as $row)
 							<tr>
-								<td>{{$row->year}}</td>
-								<td>Rp. {{$row->nominal}}</td>
+								<td>{{$row->name}}</td>
+								<td>{{$row->email}}</td>
 								<td>
-									<form action="{{route('admin.spp.destroy', $row->id_spp)}}" method="post">
+									<form action="{{route('admin.staff.destroy', $row->id)}}" method="post">
 										@csrf
 										@method('DELETE')
-										<a href="{{route('admin.spp.edit', $row->id_spp)}}" class="btn btn-warning btn-sm" data-mdb-toggle="tooltip" title="Ubah Data" data-placement="top"><i class="fas fa-pencil fa-fw"></i></a>
+										<a href="{{route('admin.staff.edit', $row->id)}}" class="btn btn-warning btn-sm" data-mdb-toggle="tooltip" title="Ubah Data" data-placement="top"><i class="fas fa-pencil fa-fw"></i></a>
 										<button class="btn btn-danger btn-sm" data-mdb-toggle="tooltip" title="Hapus Data" data-placement="top" onclick="return confirm('Hapus Data?');"><i class="fas fa-trash-can fa-fw"></i></button>
 									</form>
 								</td>

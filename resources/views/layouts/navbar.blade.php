@@ -59,7 +59,7 @@
     <div class="d-flex align-items-center">
             <!-- Avatar -->
     @guest
-    test
+
     @else
       <div class="dropdown">
         <a
@@ -70,6 +70,7 @@
           data-mdb-toggle="dropdown"
           aria-expanded="false"
         >
+        {{ Auth::user()->name }}
           <img
             src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp"
             class="rounded-circle"
@@ -84,9 +85,6 @@
         >
           <li>
             <a class="dropdown-item" href="#">My profile</a>
-          </li>
-          <li>
-            <a class="dropdown-item" href="#">Settings</a>
           </li>
           <li>
             <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>

@@ -11,7 +11,7 @@
 				</div>
 				@endif
 				<div class="card-body">
-					<a href="{{route('admin.class.create')}}" class="btn btn-success">tambah</a>
+					<a href="{{route('admin.class.create')}}" class="btn btn-success btn-sm"><i class="fas fa-plus fa-fw me-3"></i>tambah</a>
 					<table class="table">
 						<thead>
 							<tr>

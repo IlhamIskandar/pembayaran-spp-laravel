@@ -27,6 +27,7 @@ class CheckRole
             }
         }
         
-        return redirect('/')->with('error', 'Tidak memiliki akses.');
+        // return redirect('/')->with('accessError', 'Tidak memiliki akses.');
+        return abort(403,"Tidak memiliki akses.");
     }
 }

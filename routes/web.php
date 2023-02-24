@@ -3,11 +3,12 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\authentication\LoginController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\StaffController;
+use App\Http\Controllers\SppPaymentController;
 use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\admin\SppController;
 use App\Http\Controllers\admin\ClassController;
 use App\Http\Controllers\admin\StudentController;
+use App\Http\Controllers\admin\StaffController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,12 +22,9 @@ use App\Http\Controllers\admin\StudentController;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/siswa', [HomeController::class, 'studentIndex'])->name('student.index');
 
 Route::post('/login', [LoginController::class, 'authenticate'])->name('auth.login');
-
-Route::get('/siswa', [HomeController::class, 'index'])->name('student.index');
-
-Route::get('/entry-spp', [StaffController::class, 'index'])->name('spp.entry');
 
 Route::prefix('admin')->middleware('checkRole:admin')->group(function(){
 	Route::get('/', [AdminController::class, 'index'])->name('admin.index');
@@ -55,10 +53,20 @@ Route::prefix('admin')->middleware('checkRole:admin')->group(function(){
 		Route::put('/{nisn}/edit/update', [StudentController::class, 'update'])->name('admin.student.update');
 		Route::get('/{nisn}', [StudentController::class, 'show'])->name('admin.student.show');
 	});
+	Route::prefix('staff')->group(function(){
+		Route::get('/', [StaffController::class, 'index'])->name('admin.staff.index');
+		Route::get('/tambah', [StaffController::class, 'create'])->name('admin.staff.create');
+		Route::post('/tambah/store', [StaffController::class, 'store'])->name('admin.staff.store');
+		Route::delete('/{nisn}/destroy', [StaffController::class, 'destroy'])->name('admin.staff.destroy');
+		Route::get('/{nisn}/edit', [StaffController::class, 'edit'])->name('admin.staff.edit');
+		Route::put('/{nisn}/edit/update', [StaffController::class, 'update'])->name('admin.staff.update');
+		Route::get('/{nisn}', [StaffController::class, 'show'])->name('admin.staff.show');
+	});
 });
 
-Route::prefix('staff')->middleware('checkRole:staff')->group(function(){
-
+Route::prefix('staff')->middleware('checkRole:admin, staff')->group(function(){
+		Route::get('/entry', [SppPaymentController::class, 'index'])->name('spp.entry');
+		Route::get('/riwayat', [SppPaymentController::class, 'index'])->name('spp.history');
 });
 Auth::routes();
 

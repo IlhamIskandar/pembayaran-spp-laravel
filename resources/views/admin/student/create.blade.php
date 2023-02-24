@@ -6,39 +6,39 @@
 		<div class="card-body">
 			<form action="{{route('admin.student.store')}}" method="post">
 				@csrf	
-				<div>
+				<div class="mb-3">
 					<label for="nisn">NISN</label>
-					<input class="form-control mb-3" type="text" name="nisn" id="nisn" placeholder="masukan nisn" autofocus required>
+					<input class="form-control" type="text" name="nisn" id="nisn" placeholder="masukan nisn" autofocus required>
 				</div>
-				<div>
+				<div class="mb-3">
 					<label for="nis">NIS</label>
-					<input class="form-control mb-3" type="text" name="nis" id="nis" placeholder="nis" required>
+					<input class="form-control" type="text" name="nis" id="nis" placeholder="masukan nis" required>
 				</div>
-				<div>
-					<label for="studentname">Nama Siswa</label>
-					<input class="form-control mb-3" type="text" name="studentname" id="studentname" placeholder="nama siswa" required>
+				<div class="mb-3">
+					<label for="name">Nama Siswa</label>
+					<input class="form-control " type="text" name="name" id="name" placeholder="masukan nama siswa" required>
 				</div>
-				<div>
-					<label for="password">Kata Sandi</label>
-					<input class="form-control mb-3" type="text" name="password" id="password" placeholder="Kata Sandi" required>
-				</div>
-				<div>
-					<label for="classname">Kelas</label>
-					<select class="select form-control mb-3" id="classname" name="classname">
+				<div class="mb-3">
+					<label for="class">Kelas</label>
+					<select class="select form-control" id="class" name="class">
 						@foreach($classes as $row)
 						<option value="{{$row->id_class}}">
-							{{$row->class_name}}
+							{{$row->class_name.' '.$row->competency}}
 						</option>
 						@endforeach
 					</select>
 				</div>
-				<div>
-					<label for="phone">Telepon</label>
-					<input class="form-control mb-3" type="text" name="phone" id="phone" placeholder="Nomor Telepon">
+				<div class="mb-3">
+				  <label class="" for="address">Alamat</label>
+				  <textarea class="form-control" name="address" id="address" rows="4" placeholder="alamat siswa"></textarea>
 				</div>
-				<div>
+				<div class="mb-3">
+					<label for="phone">Telepon</label>
+					<input class="form-control" type="text" name="phone" id="phone" placeholder="Nomor Telepon">
+				</div>
+				<div class="mb-3">
 					<label for="spp">Tahun Ajaran (SPP)</label>
-					<select class="select form-control mb-3">
+					<select class="select form-control" name="spp">
 						@foreach($spps as $row)
 						<option value="{{$row->id_spp}}">
 							{{$row->year}}

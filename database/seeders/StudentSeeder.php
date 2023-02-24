@@ -20,7 +20,6 @@ class StudentSeeder extends Seeder
             'nisn' => 123123,
             'nis' => 0050000001,
             'name' => 'Ilham Iskandar',
-            'password' => '321321',
             'id_class' => 1,
             'address' => 'Bandung, Jawa Barat',
             'phone_number' => '08123123123',

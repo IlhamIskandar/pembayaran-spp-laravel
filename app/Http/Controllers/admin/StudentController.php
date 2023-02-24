@@ -17,8 +17,10 @@ class StudentController extends Controller
      */
     public function index()
     {
+        $classes = Classes::all()->sortBy('class_name');
+        $spps = Spp::all()->sortBy('year');
         $data = Student::join('classes', 'students.id_class', '=', 'classes.id_class')->get();
-        return view('admin.student.index', compact('data'));
+        return view('admin.student.index', compact('data','classes', 'spps'));
     }
 
     /**
@@ -42,14 +44,26 @@ class StudentController extends Controller
     public function store(Request $request)
     {
         $credential = $request->validate([
-            'nisn' => 'required|max:10',
+            'nisn' => 'required',
             'nis' => 'required',
-            'studentname' => 'required',
-            'password' => 'required',
-            'classname' => 'required',
+            'name' => 'required',
+            'class' => 'required',
+            'address' => 'required',
             'phone' => 'required',
+            'spp' => 'required',
         ]);
-        dd($credential);
+        // dd($credential);
+
+        $store = Student::create([
+            'nisn' => $credential['nisn'],
+            'nis' => $credential['nis'],
+            'name' => $credential['name'],
+            'id_class' => $credential['class'],
+            'address' => $credential['address'],
+            'phone_number' => $credential['phone'],
+            'id_spp' => $credential['spp']
+        ]);
+        return redirect()->route('admin.student.index')->with('success', 'Berhasil menambahkan data.');
     }
 
     /**
@@ -60,7 +74,9 @@ class StudentController extends Controller
      */
     public function show($id)
     {
-        return view('admin.student.show');
+        $data = Student::where('nisn',$id)->join('classes', 'students.id_class', '=', 'classes.id_class')->first();
+        // dd($data);
+        return view('admin.student.show', compact('data'));
     }
 
     /**

@@ -54,7 +54,35 @@
 			    </div>
 			</form>
 			@else
-			sudah login
+			<div class="mt-5">
+				@switch(Auth::user()->role)
+					@case("admin")
+						<div class="row">
+							<div class="col">
+								<a class="btn btn-info btn-block mb-3" href="{{route('admin.index')}}">Masuk ke Halaman Admin</a>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col">
+								<a class="btn btn-info btn-block mb-3" href="{{route('spp.entry')}}">Masuk ke Halaman Staff</a>
+							</div>
+						</div>
+						@break
+					@case("staff")
+						<div class="row">
+							<div class="col">
+								<a class="btn btn-info btn-block mb-3" href="{{route('spp.entry')}}">Masuk ke Halaman Staff</a>
+							</div>
+						</div>
+						@break
+					@case("siswa")
+					<div class="row">
+							<div class="col">
+								<a class="btn btn-info btn-block mb-3" href="{{route('student.index')}}">Lihat Riwayat Pembayaran</a>
+							</div>
+						</div>
+				@endswitch
+			</div>
 			@endguest
 		</div>
 	</div>

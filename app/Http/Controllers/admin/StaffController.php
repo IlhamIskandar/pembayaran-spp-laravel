@@ -4,9 +4,9 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Spp;
+use App\Models\User;
 
-class SppController extends Controller
+class StaffController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,8 @@ class SppController extends Controller
      */
     public function index()
     {
-        $spp = Spp::all();
-        return view('admin.spp.index', compact('spp'));
+        $data = User::where('role','staff')->get();
+        return view('admin.staff.index', compact('data'));
     }
 
     /**
@@ -26,7 +26,7 @@ class SppController extends Controller
      */
     public function create()
     {
-        return view('admin.spp.create');
+        return view('admin.staff.create');
     }
 
     /**
@@ -38,18 +38,23 @@ class SppController extends Controller
     public function store(Request $request)
     {
         $credential = $request->validate([
-            'year' => 'required',
-            'nominal' => 'required|integer'
+            'name' => 'required',
+            'email' => 'required|email',
+            'username' => 'required',
+            'password' => 'required',
         ]);
 
         // dd($credential);
 
-        $store = Spp::create([
-            'year' => $credential['year'],
-            'nominal' => $credential['nominal']
+        $store = User::create([
+            'name' => $credential['name'],
+            'email' => $credential['email'],
+            'username' => $credential['username'],
+            'password' => $credential['password'],
+            'role' => 'staff',
         ]);
 
-        return redirect()->route('admin.spp.index')->with('success', 'Berhasil Menambahkan Data');
+        return redirect()->route('admin.staff.index')->with('success', 'Berhasil Menambahkan Data');
     }
 
     /**
@@ -71,9 +76,7 @@ class SppController extends Controller
      */
     public function edit($id)
     {
-        $data = Spp::find($id);
-
-        return view('admin.spp.edit', compact('data'));
+        //
     }
 
     /**
@@ -85,17 +88,7 @@ class SppController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $credential = $request->validate([
-            'year' => 'required',
-            'nominal' => 'required|integer'
-        ]);
-
-        $store = Spp::where('id_spp', $id)->update([
-            'year' => $credential['year'],
-            'nominal' => $credential['nominal']
-        ]);
-
-        return redirect()->route('admin.spp.index')->with('success', 'Berhasil Mengubah Data');
+        //
     }
 
     /**
@@ -106,8 +99,6 @@ class SppController extends Controller
      */
     public function destroy($id)
     {
-        Spp::destroy($id);
-
-        return redirect()->route('admin.spp.index')->with('success', 'Berhasil Menghapus Data');
+        //
     }
 }
