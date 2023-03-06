@@ -57,14 +57,14 @@ Route::prefix('admin')->middleware('checkRole:admin')->group(function(){
 		Route::get('/', [StaffController::class, 'index'])->name('admin.staff.index');
 		Route::get('/tambah', [StaffController::class, 'create'])->name('admin.staff.create');
 		Route::post('/tambah/store', [StaffController::class, 'store'])->name('admin.staff.store');
-		Route::delete('/{nisn}/destroy', [StaffController::class, 'destroy'])->name('admin.staff.destroy');
-		Route::get('/{nisn}/edit', [StaffController::class, 'edit'])->name('admin.staff.edit');
-		Route::put('/{nisn}/edit/update', [StaffController::class, 'update'])->name('admin.staff.update');
-		Route::get('/{nisn}', [StaffController::class, 'show'])->name('admin.staff.show');
+		Route::delete('/{id}/destroy', [StaffController::class, 'destroy'])->name('admin.staff.destroy');
+		Route::get('/{id}/edit', [StaffController::class, 'edit'])->name('admin.staff.edit');
+		Route::put('/{id}/edit/update', [StaffController::class, 'update'])->name('admin.staff.update');
+		Route::get('/{id}', [StaffController::class, 'show'])->name('admin.staff.show');
 	});
 });
 
-Route::prefix('staff')->middleware('checkRole:admin, staff')->group(function(){
+Route::prefix('pembayaran')->middleware('checkRole:admin, staff')->group(function(){
 		Route::get('/entry', [SppPaymentController::class, 'index'])->name('spp.entry');
 		Route::get('/riwayat', [SppPaymentController::class, 'index'])->name('spp.history');
 });

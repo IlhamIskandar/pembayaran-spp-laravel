@@ -17,5 +17,6 @@ class Student extends Model
     	'address',
     	'phone_number',
     	'id_spp',
+    	'id',
     ];
 }

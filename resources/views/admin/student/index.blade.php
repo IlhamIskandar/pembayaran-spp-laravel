@@ -20,7 +20,8 @@
 								<th>NIS</th>
 								<th>Nama</th>
 								<th>Kelas</th>
-								<th>Telepon</th>		
+								<th>Telepon</th>
+								<th>Tahun SPP</th>
 								<th>Aksi</th>		
 							</tr>
 						</thead>
@@ -32,7 +33,7 @@
 								<td>{{$row->name}}</td>
 								<td class="text-truncate" style="max-width: 100px">{{$row->class_name.' '.$row->competency}}</td>
 								<td>{{$row->phone_number}}</td>
-
+								<td>{{$row->year}}</td>
 								<td>
 									<form action="{{route('admin.student.destroy', $row->nisn)}}" method="post">
 										@csrf

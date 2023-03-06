@@ -72,10 +72,10 @@
         >
         {{ Auth::user()->name }}
           <img
-            src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp"
-            class="rounded-circle"
+            src="{{asset('storage/img/blank-user-avatar.jpg')}}"
+            class="rounded-circle ps-2"
             height="25"
-            alt="Black and White Portrait of a Man"
+            alt="+"
             loading="lazy"
           />
         </a>
@@ -84,7 +84,7 @@
           aria-labelledby="navbarDropdownMenuAvatar"
         >
           <li>
-            <a class="dropdown-item" href="#">My profile</a>
+            <a class="dropdown-item" href="#">Lihat Profil</a>
           </li>
           <li>
             <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>

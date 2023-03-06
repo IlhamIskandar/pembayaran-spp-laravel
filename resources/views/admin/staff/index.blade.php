@@ -1,7 +1,7 @@
 @extends('admin.layouts.app')
 @section('content')
 <div class="container">
-	<h4>SPP</h4>
+	<h4>Staff</h4>
 	<div class="row">
 		<div class="col">
 			<div class="card">
@@ -16,6 +16,7 @@
 						<thead>
 							<tr>
 								<th>Nama</th>
+								<th>Username</th>	
 								<th>Email</th>	
 								<th>Aksi</th>		
 							</tr>
@@ -24,6 +25,7 @@
 							@foreach($data as $row)
 							<tr>
 								<td>{{$row->name}}</td>
+								<td>{{$row->username}}</td>
 								<td>{{$row->email}}</td>
 								<td>
 									<form action="{{route('admin.staff.destroy', $row->id)}}" method="post">

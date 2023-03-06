@@ -4,9 +4,12 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use App\Models\Student;
 use App\Models\Classes;
 use App\Models\Spp;
+use App\Models\User;
+
 
 class StudentController extends Controller
 {
@@ -19,7 +22,7 @@ class StudentController extends Controller
     {
         $classes = Classes::all()->sortBy('class_name');
         $spps = Spp::all()->sortBy('year');
-        $data = Student::join('classes', 'students.id_class', '=', 'classes.id_class')->get();
+        $data = Student::join('classes', 'students.id_class', '=', 'classes.id_class')->join('spps','students.id_spp', '=', 'spps.id_spp')->get();
         return view('admin.student.index', compact('data','classes', 'spps'));
     }
 
@@ -51,8 +54,21 @@ class StudentController extends Controller
             'address' => 'required',
             'phone' => 'required',
             'spp' => 'required',
+
+            'email' => 'required|email',
+            'username' => 'required',
+            'password' => 'required|confirmed',
         ]);
+        
+        dd($credential);
         // dd($credential);
+        $account = User::create([
+            'name' => $credential['name'],
+            'email' => $credential['email'],
+            'username' => $credential['username'],
+            'password' => Hash::make($credential['password']),
+            'role' => 'siswa',
+        ]);
 
         $store = Student::create([
             'nisn' => $credential['nisn'],
@@ -61,8 +77,10 @@ class StudentController extends Controller
             'id_class' => $credential['class'],
             'address' => $credential['address'],
             'phone_number' => $credential['phone'],
-            'id_spp' => $credential['spp']
+            'id_spp' => $credential['spp'],
+            'id' => $account['id'],
         ]);
+
         return redirect()->route('admin.student.index')->with('success', 'Berhasil menambahkan data.');
     }
 
@@ -74,8 +92,8 @@ class StudentController extends Controller
      */
     public function show($id)
     {
-        $data = Student::where('nisn',$id)->join('classes', 'students.id_class', '=', 'classes.id_class')->first();
-        // dd($data);
+        $data = Student::where('nisn',$id)->join('classes', 'students.id_class', '=', 'classes.id_class')->join('spps','students.id_spp', '=', 'spps.id_spp')->join('users','students.id', '=', 'users.id')->first();
+
         return view('admin.student.show', compact('data'));
     }
 
@@ -87,7 +105,11 @@ class StudentController extends Controller
      */
     public function edit($id)
     {
-        return view('admin.student.edit');
+        $classes = Classes::all()->sortBy('class_name');
+        $spps = Spp::all()->sortBy('year');
+        $data = Student::where('nisn', $id)->join('users','students.id', '=', 'users.id')->first();
+
+        return view('admin.student.edit', compact('data','classes', 'spps'));
     }
 
     /**

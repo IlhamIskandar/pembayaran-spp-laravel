@@ -22,6 +22,7 @@ return new class extends Migration
             $table->text('address');
             $table->string('phone_number', 13);
             $table->foreignId('id_spp')->constrained('spps', 'id_spp');
+            $table->foreignId('id')->constrained('users', 'id');
             $table->timestamps();
         });
     }

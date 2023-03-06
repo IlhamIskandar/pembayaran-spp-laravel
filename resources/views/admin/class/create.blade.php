@@ -15,6 +15,7 @@
 					<input class="form-control mb-4" type="text" name="competency" id="competency" placeholder="Jurusan Keahlian">
 				</div>
 				<button class="btn btn-info" type="submit">Simpan</button>
+				<a class="btn btn-secondary" href="{{route('admin.class.index')}}">kembali</a>
 			</form>
 		</div>
 	</div>

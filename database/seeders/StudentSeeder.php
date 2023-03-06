@@ -24,6 +24,8 @@ class StudentSeeder extends Seeder
             'address' => 'Bandung, Jawa Barat',
             'phone_number' => '08123123123',
             'id_spp' => 1 ,
+            'id' => 3 ,
+
         ]);
     }
 }

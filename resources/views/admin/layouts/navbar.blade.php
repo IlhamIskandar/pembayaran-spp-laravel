@@ -105,7 +105,7 @@
       <!-- Brand -->
       <a class="navbar-brand" href="/">
         <img
-          src="/storage/img/smknekat-logo.png"
+          src="{{asset('storage/img/smknekat-logo.png')}}"
           height="30"
         />
         <span>SMKN 1 Katapang</span>
@@ -124,10 +124,10 @@
             aria-expanded="false"
           >
             <img
-              src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img (31).webp"
+              src="{{asset('storage/img/blank-user-avatar.jpg')}}"
               class="rounded-circle"
               height="22"
-              alt="Avatar"
+              alt="="
               loading="lazy"
             />
           </a>
@@ -136,13 +136,13 @@
             aria-labelledby="navbarDropdownMenuLink"
           >
             <li>
-              <a class="dropdown-item" href="#">My profile</a>
+              <a class="dropdown-item" href="#">Lihat Profil</a>
             </li>
             <li>
-              <a class="dropdown-item" href="#">Settings</a>
-            </li>
-            <li>
-              <a class="dropdown-item" href="#">Logout</a>
+              <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+              @csrf
+            </form>
             </li>
           </ul>
         </li>

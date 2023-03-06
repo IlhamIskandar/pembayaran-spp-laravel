@@ -5,12 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Pembayaran SPP</title>
 	@include('cdn.mdb-css')
-	<style>	
-			*{
-				
-				
-			}
-	</style>	
+	<link rel="icon" href="{{asset('storage/img/smknekat-logo.png')}}" type="icon">	
 	<link rel="stylesheet" type="text/css"	href="/css/style.css">
 </head>
 <body>

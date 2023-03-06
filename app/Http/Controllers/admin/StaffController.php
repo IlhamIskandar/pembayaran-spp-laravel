@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class StaffController extends Controller
 {
@@ -41,17 +42,17 @@ class StaffController extends Controller
             'name' => 'required',
             'email' => 'required|email',
             'username' => 'required',
-            'password' => 'required',
+            'password' => 'required|confirmed',
         ]);
 
         // dd($credential);
 
         $store = User::create([
-            'name' => $credential['name'],
-            'email' => $credential['email'],
             'username' => $credential['username'],
-            'password' => $credential['password'],
+            'password' => Hash::make($credential['password']),
+            'name' => $credential['name'],
             'role' => 'staff',
+            'email' => $credential['email'],
         ]);
 
         return redirect()->route('admin.staff.index')->with('success', 'Berhasil Menambahkan Data');
@@ -65,7 +66,7 @@ class StaffController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**
@@ -76,8 +77,10 @@ class StaffController extends Controller
      */
     public function edit($id)
     {
-        //
-    }
+    	$data = User::where('id',$id)->first();
+        // dd($data);
+        return view('admin.staff.edit', compact('data'));
+	}
 
     /**
      * Update the specified resource in storage.
@@ -88,7 +91,18 @@ class StaffController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $credential = $request->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+            'username' => 'required',
+        ]);
+
+        $store = User::where('id', $id)->update([
+            'username' => $credential['username'],
+            'name' => $credential['name'],
+            'email' => $credential['email'],
+        ]);
+        return redirect()->route('admin.staff.index')->with('success', 'Berhasil Mengubah Data');
     }
 
     /**
@@ -99,6 +113,8 @@ class StaffController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $a = User::destroy($id);
+
+        return redirect()->route('admin.staff.index')->with('success', 'Berhasil Menghapus Data');
     }
 }

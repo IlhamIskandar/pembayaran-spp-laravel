@@ -20,15 +20,15 @@
 				{{message('loginfailed')}}
 			</div>
 			@endif
-			<form class="p-5" action="{{route('login')}}" method="POST">
+			<form class="px-5 py-4" action="{{route('login')}}" method="POST">
 				@csrf
 			    <h4 class="mb-4 text-center">Masuk</h4>
 
 			    <div class="row mb-3">
 			    	<div class="col">
-				    <label class="text-start" for="email" >Nama Pengguna</label>
-				    <input type="text" class="form-control @error('email') is-invalid @enderror" placeholder="Nama Pengguna" name="email" required id="email" autofocus value="{{old('email')}}">
-				    @error('email')
+				    <label class="text-start" for="username" >Nama Pengguna</label>
+				    <input type="text" class="form-control @error('username') is-invalid @enderror" placeholder="Nama Pengguna" name="username" required id="username" autofocus value="{{old('username')}}">
+				    @error('username')
 						<span class="invalid-feedback" role="alert">
 							<strong>{{ $message }}</strong>
 						</span>
