@@ -2,7 +2,7 @@
 @section('content')
 <div class="container">
 <h4>Siswa</h4>
-<form action="{{route('admin.student.store')}}" method="post">
+<form action="{{route('admin.student.update', $data->nisn)}}" method="post">
 	@if ($errors->any())
 	<div class="row">
 		<div class="col">
@@ -24,7 +24,8 @@
 					<h5>Profil Siswa</h5>
 				</div>
 				<div class="card-body">
-					@csrf	
+					@csrf
+					@method('PUT')
 					<label for="nisn">NISN</label>
 					<div class="input-group mb-3">
 						<input class="form-control" type="text" name="nisn" id="nisn" placeholder="masukan nisn" autofocus required value="{{$data->nisn}}">
@@ -59,7 +60,7 @@
 					<hr>
 					<label for="phone">Telepon</label>
 					<div class="input-group mb-3">
-						<input class="form-control" type="text" name="phone" id="phone" placeholder="masukan nomor telepon siswa" value="{{$data->phone}}">
+						<input class="form-control" type="text" name="phone" id="phone" placeholder="masukan nomor telepon siswa" value="{{$data->phone_number}}">
 					</div>
 					<hr>
 					<label for="spp">Tahun Ajaran (SPP)</label>
@@ -91,16 +92,17 @@
 		            </div>
 					<hr>
 					<div class="row">
-						<label for="username">Username</label>
+						<label for="username">Username (NIS)</label>
 		              	<div class="input-group">
 							<input class="form-control" type="text" name="username" id="username" placeholder="masukan username" required value="{{$data->username}}">
 						</div>
 		            </div>
 		            <hr>
 		            <div class="row">
-						<label for="password">Kata Sandi</label>
+						<label for="password">Kata Sandi (NISN)</label>
 		              	<div class="input-group">
 							<input class="form-control" type="password" name="password" id="password" placeholder="masukan kata sandi" required value="userpassword" disabled>
+							<input class="form-control" type="text" name="id_account" id="id_account" placeholder="" required value="{{$data->id}}" hidden>
 						</div>
 		            </div>
 		        	<hr>

@@ -97,14 +97,14 @@
 		            </div>
 		            <hr>
 					<div class="row">
-						<label for="username">Username</label>
+						<label for="username">Username (NIS)</label>
 		              	<div class="input-group">
 							<input class="form-control" type="text" name="username" id="username" placeholder="masukan username" required value="{{old('username')}}">
 						</div>
 		            </div>
 		            <hr>
 		            <div class="row">
-						<label for="password">Kata Sandi</label>
+						<label for="password">Kata Sandi (NISN)</label>
 		              	<div class="input-group">
 							<input class="form-control @error('password') is-invalid mb-3 @enderror" type="password" name="password" id="password" placeholder="masukan kata sandi" required>
 						@error('password')
@@ -118,7 +118,7 @@
 		        	<div class="row">
 						<label for="password">Konfirmasi Kata Sandi</label>
 		              	<div class="input-group">
-							<input class="form-control @error('password') is-invalid @enderror" type="password" name="password-confirm" id="password-confirmation" placeholder="konfirmasi kata sandi" required>
+							<input class="form-control @error('password') is-invalid @enderror" type="password" name="password_confirmation" id="password_confirmation" placeholder="konfirmasi kata sandi" required>
 						</div>
 		            </div>
 		        	<hr>

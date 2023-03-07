@@ -60,8 +60,7 @@ class StudentController extends Controller
             'password' => 'required|confirmed',
         ]);
         
-        dd($credential);
-        // dd($credential);
+        
         $account = User::create([
             'name' => $credential['name'],
             'email' => $credential['email'],
@@ -121,7 +120,39 @@ class StudentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $credential = $request->validate([
+            'nisn' => 'required',
+            'nis' => 'required',
+            'name' => 'required',
+            'class' => 'required',
+            'address' => 'required',
+            'phone' => 'required',
+            'spp' => 'required',
+
+            'email' => 'required|email',
+            'username' => 'required',
+        ]);
+        
+        
+        $account = User::where('id', $request->id_account)->update([
+            'name' => $credential['name'],
+            'email' => $credential['email'],
+            'username' => $credential['username'],
+            'password' => $credential['nisn'],
+
+        ]);
+
+        $update = Student::where('nisn', $id)->update([
+            'nisn' => $credential['nisn'],
+            'nis' => $credential['nis'],
+            'name' => $credential['name'],
+            'id_class' => $credential['class'],
+            'address' => $credential['address'],
+            'phone_number' => $credential['phone'],
+            'id_spp' => $credential['spp'],
+        ]);
+
+        return redirect()->route('admin.student.index')->with('success', 'Berhasil mengubah data.');
     }
 
     /**
@@ -132,6 +163,7 @@ class StudentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $a = Student::destroy($id);
+        return redirect()->route('admin.student.index');
     }
 }
