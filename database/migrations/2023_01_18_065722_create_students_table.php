@@ -18,11 +18,11 @@ return new class extends Migration
             $table->primary('nisn');
             $table->biginteger('nis')->unique();
             $table->string('name');
-            $table->foreignId('id_class')->constrained('classes', 'id_class')->default(0);
+            $table->foreignId('class_id')->constrained('classes', 'class_id')->default(0);
             $table->text('address');
             $table->string('phone_number', 13);
-            $table->foreignId('id_spp')->constrained('spps', 'id_spp');
-            $table->foreignId('id')->constrained('users', 'id');
+            $table->foreignId('spp_id')->constrained('spps', 'spp_id');
+            $table->foreignId('user_id')->constrained('users', 'user_id');
             $table->timestamps();
         });
     }

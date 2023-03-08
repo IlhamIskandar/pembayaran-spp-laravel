@@ -17,9 +17,9 @@ class ClassSeeder extends Seeder
     {
         //
         DB::table('classes')->insert([
-            'id_class' => null,
+            // 'id_class' => null,
             'class_name' => 'XII',
-            'competency' => 'software enginer',
+            'competency' => 'Rekayasa Perangkat Lunak',
         ]);
     }
 }

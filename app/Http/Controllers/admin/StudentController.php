@@ -22,7 +22,7 @@ class StudentController extends Controller
     {
         $classes = Classes::all()->sortBy('class_name');
         $spps = Spp::all()->sortBy('year');
-        $data = Student::join('classes', 'students.id_class', '=', 'classes.id_class')->join('spps','students.id_spp', '=', 'spps.id_spp')->get();
+        $data = Student::join('classes', 'students.class_id', '=', 'classes.class_id')->join('spps','students.spp_id', '=', 'spps.spp_id')->get();
         return view('admin.student.index', compact('data','classes', 'spps'));
     }
 
@@ -73,11 +73,11 @@ class StudentController extends Controller
             'nisn' => $credential['nisn'],
             'nis' => $credential['nis'],
             'name' => $credential['name'],
-            'id_class' => $credential['class'],
+            'class_id' => $credential['class'],
             'address' => $credential['address'],
             'phone_number' => $credential['phone'],
             'id_spp' => $credential['spp'],
-            'id' => $account['id'],
+            'user_id' => $account['id'],
         ]);
 
         return redirect()->route('admin.student.index')->with('success', 'Berhasil menambahkan data.');
@@ -91,7 +91,7 @@ class StudentController extends Controller
      */
     public function show($id)
     {
-        $data = Student::where('nisn',$id)->join('classes', 'students.id_class', '=', 'classes.id_class')->join('spps','students.id_spp', '=', 'spps.id_spp')->join('users','students.id', '=', 'users.id')->first();
+        $data = Student::where('nisn',$id)->join('classes', 'students.class_id', '=', 'classes.class_id')->join('spps','students.id_spp', '=', 'spps.id_spp')->join('users','students.user_id', '=', 'users.user_id')->first();
 
         return view('admin.student.show', compact('data'));
     }
@@ -106,7 +106,7 @@ class StudentController extends Controller
     {
         $classes = Classes::all()->sortBy('class_name');
         $spps = Spp::all()->sortBy('year');
-        $data = Student::where('nisn', $id)->join('users','students.id', '=', 'users.id')->first();
+        $data = Student::where('nisn', $id)->join('users','students.user_id', '=', 'users.user_id')->first();
 
         return view('admin.student.edit', compact('data','classes', 'spps'));
     }
@@ -134,7 +134,7 @@ class StudentController extends Controller
         ]);
         
         
-        $account = User::where('id', $request->id_account)->update([
+        $account = User::where('user_id', $request->id_account)->update([
             'name' => $credential['name'],
             'email' => $credential['email'],
             'username' => $credential['username'],
@@ -146,7 +146,7 @@ class StudentController extends Controller
             'nisn' => $credential['nisn'],
             'nis' => $credential['nis'],
             'name' => $credential['name'],
-            'id_class' => $credential['class'],
+            'class_id' => $credential['class'],
             'address' => $credential['address'],
             'phone_number' => $credential['phone'],
             'id_spp' => $credential['spp'],

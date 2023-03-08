@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Student extends Model
 {
@@ -13,10 +14,20 @@ class Student extends Model
     	'nisn',
     	'nis',
     	'name',
-    	'id_class',
+    	'class_id',
     	'address',
     	'phone_number',
-    	'id_spp',
-    	'id',
+    	'spp_id',
+    	'user_id',
     ];
+
+    public function spp()
+    {
+    	return $this->belongsTo(Spp::class, 'spp_id', 'spp_id');
+    }
+
+    public function class()
+    {
+    	return $this->belongsTo(Classes::class, 'class_id', 'class_id');
+    }
 }

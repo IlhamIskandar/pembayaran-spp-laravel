@@ -4,7 +4,7 @@
 	<h4>Kelas</h4>
 	<div class="card">
 		<div class="card-body">
-			<form action="{{route('admin.class.update', $data->id_class)}}" method="post">
+			<form action="{{route('admin.class.update', $data->class_id)}}" method="post">
 				@csrf
 				@method('PUT')
 				<div>

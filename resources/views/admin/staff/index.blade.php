@@ -28,10 +28,10 @@
 								<td>{{$row->username}}</td>
 								<td>{{$row->email}}</td>
 								<td>
-									<form action="{{route('admin.staff.destroy', $row->id)}}" method="post">
+									<form action="{{route('admin.staff.destroy', $row->user_id)}}" method="post">
 										@csrf
 										@method('DELETE')
-										<a href="{{route('admin.staff.edit', $row->id)}}" class="btn btn-warning btn-sm" data-mdb-toggle="tooltip" title="Ubah Data" data-placement="top"><i class="fas fa-pencil fa-fw"></i></a>
+										<a href="{{route('admin.staff.edit', $row->user_id)}}" class="btn btn-warning btn-sm" data-mdb-toggle="tooltip" title="Ubah Data" data-placement="top"><i class="fas fa-pencil fa-fw"></i></a>
 										<button class="btn btn-danger btn-sm" data-mdb-toggle="tooltip" title="Hapus Data" data-placement="top" onclick="return confirm('Hapus Data?');"><i class="fas fa-trash-can fa-fw"></i></button>
 									</form>
 								</td>

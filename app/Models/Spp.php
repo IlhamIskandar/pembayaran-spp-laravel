@@ -8,9 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Spp extends Model
 {
     use HasFactory;
-    protected $primaryKey = 'id_spp';
+    protected $primaryKey = 'spp_id';
     protected $fillable = [
     	'year',
     	'nominal'
     ];
+
+    public function student()
+    {
+    	return $this->hasMany(Student::class, 'spp_id');
+    }
 }

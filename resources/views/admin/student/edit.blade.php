@@ -102,7 +102,7 @@
 						<label for="password">Kata Sandi (NISN)</label>
 		              	<div class="input-group">
 							<input class="form-control" type="password" name="password" id="password" placeholder="masukan kata sandi" required value="userpassword" disabled>
-							<input class="form-control" type="text" name="id_account" id="id_account" placeholder="" required value="{{$data->id}}" hidden>
+							<input class="form-control" type="text" name="id_account" id="id_account" placeholder="" required value="{{$data->user_id}}" hidden>
 						</div>
 		            </div>
 		        	<hr>

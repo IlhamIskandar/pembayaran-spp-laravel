@@ -14,12 +14,12 @@ return new class extends Migration
     public function up()
     {
         Schema::create('spp_payments', function (Blueprint $table) {
-            $table->id('id_spp_payments');
-            $table->foreignId('id_employee')->constrained('employees', 'id_employee');
+            $table->id('spp_payment_id');
+            $table->foreignId('user_id')->constrained('users', 'user_id');
             $table->foreignId('nisn')->constrained('students', 'nisn');
             $table->date('payment_date');
-            $table->unsignedbiginteger('id_spp');
-            $table->foreign('id_spp')->references('id_spp')->on('students');
+            $table->unsignedbiginteger('spp_id');
+            $table->foreign('spp_id')->references('spp_id')->on('students');
             $table->smallinteger('pay_amount');
             $table->timestamps();
         });

@@ -90,7 +90,7 @@ class SppController extends Controller
             'nominal' => 'required|integer'
         ]);
 
-        $store = Spp::where('id_spp', $id)->update([
+        $store = Spp::where('spp_id', $id)->update([
             'year' => $credential['year'],
             'nominal' => $credential['nominal']
         ]);
@@ -106,8 +106,14 @@ class SppController extends Controller
      */
     public function destroy($id)
     {
-        Spp::destroy($id);
+        $data = Spp::find($id);
+        
+        if($data->student()->count() > 0){
+            return redirect()->route('admin.spp.index')->with('fail', 'Gagal menghapus data, beberapa siswa menggunakan data tersebut');
+        }else{
+            Spp::destroy($id);
 
-        return redirect()->route('admin.spp.index')->with('success', 'Berhasil Menghapus Data');
+            return redirect()->route('admin.spp.index')->with('success', 'Berhasil Menghapus Data');
+        }
     }
 }

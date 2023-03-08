@@ -9,7 +9,7 @@
 			<h5>Ubah Akun Staff</h5>
 		</div>
 		<div class="card-body">
-			<form action="{{route('admin.staff.update', $data->id)}}" method="post">
+			<form action="{{route('admin.staff.update', $data->user_id)}}" method="post">
 				@csrf
 				@method('PUT')
 				<label for="name">Nama Staff</label>

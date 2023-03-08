@@ -46,7 +46,7 @@
 						<select class="select form-control" id="class" name="class" required value="{{old('class')}}">
 							<option value="">Pilih Kelas & Jurusan</option>
 							@foreach($classes as $row)
-							<option value="{{$row->id_class}}" {{$row->id_class = old('class') ? 'selected' : ''}}>
+							<option value="{{$row->class_id}}" {{$row->class_id = old('class') ? 'selected' : ''}}>
 								{{$row->class_name.' '.$row->competency}}
 							</option>
 							@endforeach

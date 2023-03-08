@@ -77,7 +77,7 @@ class StaffController extends Controller
      */
     public function edit($id)
     {
-    	$data = User::where('id',$id)->first();
+    	$data = User::where('user_id',$id)->first();
         // dd($data);
         return view('admin.staff.edit', compact('data'));
 	}
@@ -97,7 +97,7 @@ class StaffController extends Controller
             'username' => 'required',
         ]);
 
-        $store = User::where('id', $id)->update([
+        $store = User::where('user_id', $id)->update([
             'username' => $credential['username'],
             'name' => $credential['name'],
             'email' => $credential['email'],

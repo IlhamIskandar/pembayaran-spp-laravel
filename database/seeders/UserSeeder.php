@@ -33,9 +33,9 @@ class UserSeeder extends Seeder
         ]);
 
         DB::table('users')->insert([
-            'username' => 'siswa',
-            'password' => Hash::make('siswalogin'),
-            'name' => 'Akun siswa',
+            'username' => '321321',
+            'password' => Hash::make('123123'),
+            'name' => 'Ilham Iskandar',
             'role' => 'siswa',
             'email' => 'email@siswa.com',
         ]);

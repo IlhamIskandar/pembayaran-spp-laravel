@@ -7,7 +7,12 @@
 			<div class="card">
 				@if(session('success'))
 				<div class="alert alert-success">
-				{{ session('success')}}
+					{{ session('success')}}
+				</div>
+				@endif
+				@if(session('fail'))
+				<div class="alert alert-danger">
+					{{ session('fail')}}
 				</div>
 				@endif
 				<div class="card-body">
@@ -26,10 +31,10 @@
 								<td>{{$row->class_name}}</td>
 								<td>{{$row->competency}}</td>
 								<td>
-									<form action="{{route('admin.class.destroy', $row->id_class)}}" method="post">
+									<form action="{{route('admin.class.destroy', $row->class_id)}}" method="post">
 										@csrf
 										@method('DELETE')
-										<a href="{{route('admin.class.edit', $row->id_class)}}" class="btn btn-warning btn-sm" data-mdb-toggle="tooltip" title="Ubah Data" data-placement="top"><i class="fas fa-pencil fa-fw"></i></a>
+										<a href="{{route('admin.class.edit', $row->class_id)}}" class="btn btn-warning btn-sm" data-mdb-toggle="tooltip" title="Ubah Data" data-placement="top"><i class="fas fa-pencil fa-fw"></i></a>
 										<button class="btn btn-danger btn-sm" data-mdb-toggle="tooltip" title="Hapus Data" data-placement="top" onclick="return confirm('Hapus Data?');"><i class="fas fa-trash-can fa-fw"></i>
                                                 </button>
 									</form>

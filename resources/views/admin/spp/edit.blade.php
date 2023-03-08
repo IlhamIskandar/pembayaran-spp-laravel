@@ -6,7 +6,7 @@
 		<div class="col-6">
 			<div class="card">
 				<div class="card-body">
-					<form action="{{route('admin.spp.update', $data->id_spp)}}" method="post">
+					<form action="{{route('admin.spp.update', $data->spp_id)}}" method="post">
 						@csrf
 						@method('PUT')
 						<div class="mb-3">

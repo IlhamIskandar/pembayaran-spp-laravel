@@ -90,7 +90,7 @@ class ClassController extends Controller
             'competency' => 'required'
         ]);
 
-        $store = Classes::where('id_class', $id)->update([
+        $store = Classes::where('class_id', $id)->update([
             'class_name' => $credential['classname'],
             'competency' => $credential['competency']
         ]);
@@ -106,8 +106,14 @@ class ClassController extends Controller
      */
     public function destroy($id)
     {
-        Classes::destroy($id);
+        $data = Classes::find($id);
+        
+        if($data->student()->count() > 0){
+            return redirect()->route('admin.class.index')->with('fail', 'Gagal menghapus data, beberapa siswa menggunakan data tersebut');
+        }else{
+            Classes::destroy($id);
 
-        return redirect()->route('admin.class.index')->with('success', 'Berhasil Menghapus Data');
+            return redirect()->route('admin.spp.index')->with('success', 'Berhasil Menghapus Data');
+        }
     }
 }
